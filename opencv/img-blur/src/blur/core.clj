@@ -1,4 +1,4 @@
-(ns test.core
+(ns blur.core
   (:gen-class))
 
 
