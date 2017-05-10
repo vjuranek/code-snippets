@@ -1,10 +1,10 @@
 (ns blur.core
   (:gen-class))
 
-
 (import '[org.opencv.core Mat Size CvType]
-               '[org.opencv.imgcodecs Imgcodecs]
-               '[org.opencv.imgproc Imgproc])
+        '[org.opencv.imgcodecs Imgcodecs]
+        '[org.opencv.imgproc Imgproc])
+
 (defn -main
   "Simple OpenCV test based on http://docs.opencv.org/2.4/doc/tutorials/introduction/clojure_dev_intro/clojure_dev_intro.html"
   [& args]
