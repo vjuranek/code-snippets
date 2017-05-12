@@ -8,8 +8,11 @@
    [:head
     [:title "Ring and hiccup test"]]
    [:body
-    [:h1 "Hello world!"]]
-  )
+    [:h1 "Hello world!"]
+    [:p (str "page was accesed from " (:remote-addr request))]
+    [:p "Headers:"]
+    [:ul (for [keyval (:headers request)] [:li keyval])]
+  ])
 )
 
 (defn gen-res
