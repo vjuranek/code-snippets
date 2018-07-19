@@ -24,9 +24,8 @@ def printStages(Map yaml) {
 }
 
 def printYaml(String yamlPath) {
-  InputStream yamlFileIn = new FileInputStream(new File(yamlPath));
-  Yaml yaml = new Yaml()
-  Map yamlMap = yaml.load(yamlFileIn)
+  def Yaml yaml = new Yaml()
+  def Map yamlMap = yaml.load((yamlPath as File).text)
   printStages(yamlMap)
 }
 
