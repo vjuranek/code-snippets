@@ -1,0 +1,31 @@
+---
+default_params: &default_params
+  DEF_PARAM1: DEFAULT_PARAM1
+  DEF_PARAM2: DEF_$REF
+
+
+stages:
+    - name: stage1
+      jobs:
+        - name: job1
+          parameters:
+            <<: *default_params
+            LONG_STRING: "some very long long long string ..."
+
+    - name: stage2
+      jobs:
+        - name: job2
+          parameters:
+            <<: *default_params
+            JOB2_PARAM1: http://some.test.url
+            JOB2_PARAM2: justParam
+            
+        - name: job3
+          parameters:
+            <<: *default_params
+            
+        - name: job4
+          parameters:
+            <<: *default_params
+            JOB4_PARAM_BOOL: true
+...
