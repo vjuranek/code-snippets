@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+import libvirt
+
+conn = libvirt.open("qemu:///system")
+
+if conn == None:
+    print("Failed to containe connection to QEMU")
+    sys.exit(1)
+
+print(conn.getCapabilities())
+
+conn.close()
