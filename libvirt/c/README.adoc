@@ -1,0 +1,8 @@
+= LibVirt code snippets in C/C++
+
+== How to compile
+
+[source, shell]
+----
+gcc -o basic basic.c -l virt
+----
