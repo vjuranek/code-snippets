@@ -16,12 +16,14 @@ OBJ = $(patsubst %,$(O_DIR)/%,$(_OBJ))
 SRC = $(patsubst %,$(SRC_DIR)/%,%.c)
 
 $(O_DIR)/%.o: $(SRC) $(DEPS)
+	mkdir -p $(@D)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 basic: $(OBJ)
+	mkdir -p $(BIN_DIR)
 	$(CC) -o $(BIN_DIR)/$@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 
 clean:
-	rm -f $(BIN_DIR)/* $(O_DIR)/*.o $(SRC_DIR)/*~ core # $(INC_DIR)/*~ 
+	rm -rf $(BIN_DIR) $(O_DIR) $(SRC_DIR)/*~ core # $(INC_DIR)/*~ 
