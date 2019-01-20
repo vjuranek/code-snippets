@@ -29,4 +29,13 @@ for r in res:
     print(r)
     print(r[1])
 
+
+res = conn.execute("SELECT name FROM sqlite_master")
+tables = res.fetchone()
+for t in tables:
+    print(t)
+
+
+print(TABLE_NAME in tables)
+
 conn.close()
