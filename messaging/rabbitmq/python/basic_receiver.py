@@ -11,7 +11,8 @@ def rec_callback(ch, method, properties, body):
 
 with pika.BlockingConnection(pika.ConnectionParameters('localhost')) as conn:
     ch = conn.channel()
-    ch.queue_declare(queue=QUEUE_NAME)
+    ch.queue_declare(queue=QUEUE_NAME)  # ensure queue exists
+    
     ch.basic_consume(rec_callback, queue=QUEUE_NAME, no_ack=True)
 
     print("Waiting for messages. To exit press CTRL+C")
