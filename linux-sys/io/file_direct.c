@@ -19,8 +19,9 @@ extern int errno;
 int write_file_direct() {
   //ssize_t pagesize = getpagesize();
   //printf("pagesize: %d\n", pagesize);
-  
-  int fd = open("/tmp/test", O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT);
+
+  //opening file on device which doesn't support O_DIRECT (e.g. /tmp with tmpfs) will result in error when opening file
+  int fd = open("/home/vjuranek/tmp/test", O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, S_IWUSR | S_IRUSR | S_IWGRP | S_IRGRP | S_IROTH);
   if (fd == -1) {
     perror("cannot open file");
   }
