@@ -27,12 +27,17 @@ int write_file_direct() {
   ssize_t pagesize = 512;//getpagesize();
   printf("page size: %d\n", pagesize);
 
-  char* buff = (char*) malloc(pagesize);
-  char* alig_buff = (char*) ((((ssize_t)buff + pagesize - 1) / pagesize) * pagesize);
-  printf("buff: %d\n", (ssize_t)buff);
-  printf("alig_buff: %d\n", (ssize_t)alig_buff);
-  strcpy(alig_buff, "hello world!");
+  // mem allocation using malloc and manual alighnment
+  /* char* buff = (char*) malloc(pagesize); */
+  /* char* alig_buff = (char*) ((((ssize_t)buff + pagesize - 1) / pagesize) * pagesize); */
+  /* printf("buff: %d\n", (ssize_t)buff); */
+  /* printf("alig_buff: %d\n", (ssize_t)buff); */
 
+  void* alig_buff;
+  posix_memalign(&alig_buff, pagesize, pagesize);
+
+  strcpy(alig_buff, "hello world!");
+  
   int len = strlen(alig_buff);
   printf("buffer size: %d\n", len);
   
@@ -42,7 +47,10 @@ int write_file_direct() {
     perror("cannot write to file");
   }
 
-  free(buff);
+  // when we allocate using malloc, we need to free original buffer
+  /* free(buff); */
+  
+  free(alig_buff);
   
   if (close(fd) == -1) {
     perror("cannot close file");
