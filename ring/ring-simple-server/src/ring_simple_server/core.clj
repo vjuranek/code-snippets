@@ -12,6 +12,7 @@
     [:p (str "page was accesed from " (:remote-addr request))]
     [:p "Headers:"]
     [:ul (for [keyval (:headers request)] [:li keyval])]
+    [:p "HTTP method: " (:request-method request)]
   ])
 )
 
