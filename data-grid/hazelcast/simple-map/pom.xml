@@ -13,7 +13,7 @@
         <version.maven.shade>2.4.3</version.maven.shade>
         <main.basedir>${project.basedir}</main.basedir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hazelcast.version>3.11</hazelcast.version>
+        <hazelcast.version>4.0.1</hazelcast.version>
         <java.main.class>com.github.vjuranek.hazelcast.SimpleMap</java.main.class>
     </properties>
 

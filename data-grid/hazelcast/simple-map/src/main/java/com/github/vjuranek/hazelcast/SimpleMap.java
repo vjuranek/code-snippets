@@ -1,5 +1,7 @@
 package com.github.vjuranek.hazelcast;
 
+import com.hazelcast.cluster.MembershipEvent;
+import com.hazelcast.cluster.MembershipListener;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.ListenerConfig;
 import com.hazelcast.config.NetworkConfig;
@@ -37,11 +39,6 @@ public class SimpleMap {
         @Override
         public void memberRemoved(MembershipEvent membershipEvent) {
             System.out.println("Map[1]: "+ testMap.get(1));
-        }
-
-        @Override
-        public void memberAttributeChanged(MemberAttributeEvent memberAttributeEvent) {
-            // no-op
         }
     }
 }
