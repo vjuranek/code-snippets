@@ -5,7 +5,9 @@ import com.hazelcast.cluster.MembershipListener;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.ListenerConfig;
 import com.hazelcast.config.NetworkConfig;
-import com.hazelcast.core.*;
+import com.hazelcast.config.TcpIpConfig;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
 
 import java.util.Map;
 
@@ -16,7 +18,10 @@ public class SimpleMap {
     public static void main(String[] args) {
         Config cfg = new Config();
         NetworkConfig netCfg = new NetworkConfig();
-        netCfg.setPort(2222);
+        netCfg.setPublicAddress("127.0.0.1").setPort(2222);;
+        netCfg.getJoin().getMulticastConfig().setEnabled(false);
+        TcpIpConfig tcpCfg = netCfg.getJoin().getTcpIpConfig();
+        tcpCfg.setEnabled(true).addMember("127.0.0.1");
         cfg.setNetworkConfig(netCfg);
         cfg.addListenerConfig(new ListenerConfig(ClusterListener.class.getName()));
         HazelcastInstance hc = Hazelcast.newHazelcastInstance(cfg);
