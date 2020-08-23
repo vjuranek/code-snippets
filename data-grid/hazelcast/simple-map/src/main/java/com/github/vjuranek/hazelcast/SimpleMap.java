@@ -18,12 +18,14 @@ public class SimpleMap {
     public static void main(String[] args) {
         Config cfg = new Config();
         NetworkConfig netCfg = new NetworkConfig();
-        netCfg.setPublicAddress("127.0.0.1").setPort(2222);;
+        netCfg.setPublicAddress("127.0.0.1").setPort(2222);
         netCfg.getJoin().getMulticastConfig().setEnabled(false);
         TcpIpConfig tcpCfg = netCfg.getJoin().getTcpIpConfig();
         tcpCfg.setEnabled(true).addMember("127.0.0.1");
         cfg.setNetworkConfig(netCfg);
+
         cfg.addListenerConfig(new ListenerConfig(ClusterListener.class.getName()));
+
         HazelcastInstance hc = Hazelcast.newHazelcastInstance(cfg);
         testMap = hc.getMap("test");
 
