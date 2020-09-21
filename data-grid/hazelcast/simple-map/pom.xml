@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.vjuranek.hazelcast</groupId>
-    <artifactId>simple-map</artifactId>
+    <artifactId>hc-simple</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>simple-map</name>
+    <name>hc-simple</name>
 
     <properties>
         <version.jdk>1.8</version.jdk>
@@ -14,7 +14,7 @@
         <main.basedir>${project.basedir}</main.basedir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hazelcast.version>4.0.1</hazelcast.version>
-        <java.main.class>com.github.vjuranek.hazelcast.SimpleMap</java.main.class>
+        <java.main.class>com.github.vjuranek.hazelcast.HealthCheck</java.main.class>
     </properties>
 
     <dependencies>
