@@ -1,0 +1,27 @@
+= JHM code snipperts
+
+== Print assembly
+If `java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -version` fails,
+it's very likely because `hsdis` library is missing in JRE libs.
+It's not provided by default and Fedora doesn't even package it.
+To fix it, download, compile and install `hsdis` library.
+
+Download hsdis from http://hg.openjdk.java.net/jdk/jdk/file/tip/src/utils/hsdis/
+
+[source, shell]
+----
+wget -O hsdis.tar.gz http://hg.openjdk.java.net/jdk/jdk/archive/bdc20ee1a68d.tar.gz/src/utils/hsdis/
+tar -zvxf hsdis.tar.gz
+cd jdk-bdc20ee1a68d/src/utils/hsdis/
+
+wget https://ftp.gnu.org/gnu/binutils/binutils-2.35.tar.xz
+tar -Jvxf binutils-2.35.tar.xz
+export BINUTILS=binutils-2.35
+make all64
+sudo cp build/linux-amd64/hsdis-amd64.so /usr/java/latest/jre/lib/amd64/
+java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -version
+----
+
+=== Links
+
+* https://wiki.openjdk.java.net/display/HotSpot/PrintAssembly
