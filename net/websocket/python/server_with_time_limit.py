@@ -18,7 +18,5 @@ async def run_server(time):
 
 
 if __name__ == '__main__':
-    try:
-        asyncio.run(run_server(10))
-    except KeyboardInterrupt:
-        asyncio.get_event_loop().stop()
+    asyncio.run(run_server(10))
+
