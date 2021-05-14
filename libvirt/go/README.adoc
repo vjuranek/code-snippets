@@ -1,0 +1,5 @@
+= Go Libvirt
+
+* install `libvirt-devel`
+* `go get libvirt.org/libvirt-go`
+* `go run basic.go`
