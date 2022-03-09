@@ -13,7 +13,7 @@
         <version.maven.shade>2.4.3</version.maven.shade>
         <main.basedir>${project.basedir}</main.basedir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hazelcast.version>4.0.5</hazelcast.version>
+        <hazelcast.version>5.1</hazelcast.version>
         <java.main.class>com.github.vjuranek.hazelcast.HealthCheck</java.main.class>
     </properties>
 
