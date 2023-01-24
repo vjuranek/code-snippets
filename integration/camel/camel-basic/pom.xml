@@ -15,7 +15,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <dependency.camel>3.20.1</dependency.camel>
+        <version.camel>3.20.1</version.camel>
+        <version.slf4j>2.0.6</version.slf4j>
         <java.main.class>com.github.vjuranek.camel.CamelBasic</java.main.class>
     </properties>
 
@@ -24,7 +25,7 @@
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-bom</artifactId>
-                <version>${dependency.camel}</version>
+                <version>${version.camel}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -43,6 +44,20 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-file</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-log</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${version.slf4j}</version>
         </dependency>
     </dependencies>
 

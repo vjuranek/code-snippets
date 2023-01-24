@@ -13,6 +13,9 @@ public class FileToFileRoute extends RouteBuilder {
     }
 
     public void configure() {
-        from(source).to(destination);
+        from(source)
+                .log(String.format("Copying from %s to %s", source, destination))
+                .to(destination)
+                .log("Copied");
     }
 }
