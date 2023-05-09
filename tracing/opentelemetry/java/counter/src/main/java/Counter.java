@@ -1,3 +1,4 @@
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -12,6 +13,7 @@ public class Counter {
     private int count = 0;
 
     @GET
+    @WithSpan
     @Produces(MediaType.TEXT_PLAIN)
     public String count() {
         LOG.info(String.format("count called, counter states: %d", count));

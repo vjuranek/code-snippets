@@ -1,3 +1,4 @@
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -18,6 +19,7 @@ public class CounterProxy {
     private HttpClient client = HttpClient.newBuilder().build();
 
     @GET
+    @WithSpan
     @Produces(MediaType.TEXT_PLAIN)
     public Response count() throws Exception {
         LOG.info("hello called");
