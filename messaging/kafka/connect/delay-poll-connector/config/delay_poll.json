@@ -1,0 +1,9 @@
+{
+    "name": "DelayPollConnector",
+    "config": {
+	"connector.class": "io.github.vjuranek.DelayPollConnector",
+	"tasks.max": "1",
+	"topic": "test",
+	"delay.poll.duration": "5"
+    }
+}
