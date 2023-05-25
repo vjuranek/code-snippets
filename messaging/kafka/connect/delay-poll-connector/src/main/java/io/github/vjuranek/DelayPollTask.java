@@ -1,11 +1,9 @@
 package io.github.vjuranek;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.source.SourceRecord;
@@ -14,7 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DelayPollTask extends SourceTask {
-    static final Logger LOGGER = LoggerFactory.getLogger(DelayPollTask.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DelayPollTask.class);
+    private static final Map sourcePartition = Collections.singletonMap("partition", "test_partition");
+    private static final String OFFSET_COUNT_KEY = "count";
+
 
     private String topic;
     private int pollDelay;
@@ -39,7 +40,15 @@ public class DelayPollTask extends SourceTask {
         else {
             throw new IllegalStateException("No delay configured");
         }
-        count = 0;
+
+        Map<String, Long> offset = context.offsetStorageReader().offset(sourcePartition);
+        if (offset != null && offset.containsKey(OFFSET_COUNT_KEY)) {
+            count = offset.get(OFFSET_COUNT_KEY).intValue();
+            LOGGER.info("Loaded count from offset: {}", count);
+        }
+        else {
+            count = 0;
+        }
     }
 
     @Override
@@ -54,7 +63,6 @@ public class DelayPollTask extends SourceTask {
         }
 
         List<SourceRecord> records = new ArrayList<>(1);
-        Map sourcePartition = Collections.singletonMap("partition", "test_partition");
         Map sourceOffset = Collections.singletonMap("count", count);
         records.add(new SourceRecord(sourcePartition, sourceOffset, topic, Schema.INT64_SCHEMA, System.currentTimeMillis(), Schema.INT32_SCHEMA, count));
         LOGGER.info("Sending record for count {}", count);
