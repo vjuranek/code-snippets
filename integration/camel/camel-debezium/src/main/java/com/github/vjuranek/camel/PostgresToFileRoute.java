@@ -16,7 +16,7 @@ public class PostgresToFileRoute extends RouteBuilder {
                 + "&databaseUser=postgres"
                 + "&databasePassword=postgres"
                 + "&databaseDbname=postgres"
-                + "&databaseServerName=test"
+                + "&topicPrefix=test"
                 + "&tableIncludeList=inventory.customers"
                 + "&offsetStorageFileName=/tmp/dbz/offset.dat");
         this.file = String.format("file:%s", destination);
