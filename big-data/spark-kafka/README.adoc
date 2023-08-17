@@ -1,6 +1,6 @@
 = Streaming data from Kafka to Spark
 
-== Setup
+== Kafka setup
 
 Start Kafka and console producer:
 
@@ -8,6 +8,10 @@ Start Kafka and console producer:
 * `./bin/kafka-server-start.sh config/server.properties`
 * `./bin/kafka-console-producer.sh --topic test --bootstrap-server localhost:9092 --property parse.key=true --property key.separator=":"`
 
-Compile the Spark app and send it to Spark:
+== RDD streaming
 
 * `./bin/spark-submit $PATH_TO_THE_REPO/big-data/spark-kafka/target/spark-kafka-1.0-SNAPSHOT-jar-with-dependencies.jar`
+
+== Structured streaming
+
+* `./bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 $PATH_TO_THE_REPO/big-data/spark-kafka/target/spark-kafka-1.0-SNAPSHOT.jar`
