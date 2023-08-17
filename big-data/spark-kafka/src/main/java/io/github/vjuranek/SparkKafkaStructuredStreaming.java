@@ -16,9 +16,9 @@ public class SparkKafkaStructuredStreaming {
                 .option("kafka.bootstrap.servers", "localhost:9092")
                 .option("subscribe", "test")
                 .load()
-                .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)");
+                .selectExpr("CAST(key AS BINARY)", "CAST(value AS BINARY)");
 
-        Dataset<String> keys = records.select("key").as(Encoders.STRING());
+        Dataset<String> keys = records.selectExpr("CAST(key AS STRING)").as(Encoders.STRING());
         Dataset<String> values = records.select("value").as(Encoders.STRING());
 
         StreamingQuery keyQuery = keys.writeStream()
