@@ -11,7 +11,7 @@
     <name>spark-kafka</name>
 
     <properties>
-        <app.main.class>io.github.vjuranek.SparkKafkaStructuredStreaming</app.main.class>
+        <app.main.class>io.github.vjuranek.SparkKafkaStructuredStreamingJson</app.main.class>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,6 +38,12 @@
             <version>${version.spark}</version>
             <scope>provided</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.spark</groupId>-->
+<!--            <artifactId>spark-mllib_${version.scala}</artifactId>-->
+<!--            <version>${version.spark}</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-kafka-0-10_${version.scala}</artifactId>
