@@ -10,3 +10,4 @@ build/
 *.pyc
 *.out
 *.o
+**/dependency-reduced-pom.xml
