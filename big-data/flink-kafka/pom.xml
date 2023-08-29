@@ -33,7 +33,7 @@ under the License.
 		<maven.compiler.source>${target.java.version}</maven.compiler.source>
 		<maven.compiler.target>${target.java.version}</maven.compiler.target>
 		<log4j.version>2.17.1</log4j.version>
-		<app.main.class>io.github.vjuranek.FlinkKafka</app.main.class>
+		<app.main.class>io.github.vjuranek.FlinkKafkaWithSchema</app.main.class>
 	</properties>
 
 	<repositories>
