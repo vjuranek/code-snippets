@@ -28,12 +28,13 @@ under the License.
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<flink.version>1.17.1</flink.version>
+		<flink.ml.version>2.2.0</flink.ml.version>
 		<target.java.version>1.8</target.java.version>
 		<scala.binary.version>2.12</scala.binary.version>
 		<maven.compiler.source>${target.java.version}</maven.compiler.source>
 		<maven.compiler.target>${target.java.version}</maven.compiler.target>
 		<log4j.version>2.17.1</log4j.version>
-		<app.main.class>io.github.vjuranek.FlinkKafkaWithSchema</app.main.class>
+		<app.main.class>io.github.vjuranek.FlinkKafkaKmeans</app.main.class>
 	</properties>
 
 	<repositories>
@@ -62,6 +63,23 @@ under the License.
 			<artifactId>flink-clients</artifactId>
 			<version>${flink.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-table-api-java</artifactId>
+			<version>${flink.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-table-api-java-bridge</artifactId>
+			<version>${flink.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-ml-uber</artifactId>
+			<version>${flink.ml.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.flink</groupId>
