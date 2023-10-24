@@ -12,7 +12,7 @@
         <version.maven.compiler>3.3</version.maven.compiler>
         <version.maven.shade>2.4.3</version.maven.shade>
         <java.main.class>com.github.vjuranek.playground.SendRec</java.main.class>
-        <version.amqp.client>5.5.1</version.amqp.client>
+        <version.amqp.client>5.18.0</version.amqp.client>
     </properties>
 
     <dependencies>
