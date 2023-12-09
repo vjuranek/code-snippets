@@ -23,6 +23,7 @@ import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
+import java.util.Map;
 
 /**
  * Server that manages startup/shutdown of a {@code Greeter} server.
@@ -84,7 +85,12 @@ public class HelloWorldServer {
 
     @Override
     public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
-      HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
+      Map<String, String> options = req.getOptions();
+      StringBuffer sb = new StringBuffer();
+      for (String key : options.keySet()) {
+        sb.append("key: " + key + " -> " + options.get(key) + "\n");
+      }
+      HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).setOptions(sb.toString()).build();
       responseObserver.onNext(reply);
       responseObserver.onCompleted();
     }

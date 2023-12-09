@@ -21,6 +21,9 @@ import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,9 +47,9 @@ public class HelloWorldClient {
   }
 
   /** Say hello to server. */
-  public void greet(String name) {
+  public void greet(String name, Map<String, String> options) {
     logger.info("Will try to greet " + name + " ...");
-    HelloRequest request = HelloRequest.newBuilder().setName(name).build();
+    HelloRequest request = HelloRequest.newBuilder().setName(name).putAllOptions(options).build();
     HelloReply response;
     try {
       response = blockingStub.sayHello(request);
@@ -55,6 +58,7 @@ public class HelloWorldClient {
       return;
     }
     logger.info("Greeting: " + response.getMessage());
+    logger.info("Options: " + response.getOptions());
   }
 
   /**
@@ -63,6 +67,10 @@ public class HelloWorldClient {
    */
   public static void main(String[] args) throws Exception {
     String user = "world";
+    Map<String, String> options = new HashMap<>();
+    options.put("op1", "option1");
+    options.put("op2", "option2");
+
     // Access a service running on the local machine on port 50051
     String target = "localhost:50051";
     // Allow passing in the user and target strings as command line arguments
@@ -90,7 +98,7 @@ public class HelloWorldClient {
         .build();
     try {
       HelloWorldClient client = new HelloWorldClient(channel);
-      client.greet(user);
+      client.greet(user, options);
     } finally {
       // ManagedChannels use resources like threads and TCP connections. To prevent leaking these
       // resources the channel should be shut down when it will no longer be used. If it may be used
