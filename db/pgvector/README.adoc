@@ -1,0 +1,5 @@
+* `git clone git@github.com:pgvector/pgvector.git`
+* `docker build -t pgvector .`
+* `docker run --rm -it --name pgvector -e POSTGRES_PASSWORD=postgres -p 5432:5432 pgvector`
+* `psql -h 127.0.0.1 -U postgres`
+* `CREATE EXTENSION vector;`
