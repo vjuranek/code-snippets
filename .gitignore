@@ -11,3 +11,4 @@ build/
 *.out
 *.o
 **/dependency-reduced-pom.xml
+**/.mvn
